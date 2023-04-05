@@ -2,11 +2,15 @@ import { Navigation } from "../entities";
 
 export const navigation: Navigation[] = [
   {
-    name: "DashBoard",
+    name: "Home",
     path: "/",
   },
   {
-    name: "Playground",
-    path: "/playground",
+    name: "Active",
+    path: "/active",
+  },
+  {
+    name: "Pending",
+    path: "/pending",
   },
 ];
