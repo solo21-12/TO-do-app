@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Providers from "./Provider";
-import { NavBar } from "../NavBar";
+import { NavBar } from "../../containers";
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
