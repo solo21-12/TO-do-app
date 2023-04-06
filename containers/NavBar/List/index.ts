@@ -11,6 +11,6 @@ export const navigation: Navigation[] = [
   },
   {
     name: "Completed",
-    path: "/pending",
+    path: "/Events/complted",
   },
 ];

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Data } from "../../data";
 
-const initialState = {data:Data};
+const initialState = {data:Data.filter((item) => (item.active == true))};
 let i = 3
 const listSlice = createSlice({
   name: "list",
@@ -13,7 +13,7 @@ const listSlice = createSlice({
       i +=1
     },
     complted: (state, action) => {
-      const index = state.data.findIndex((arrow) => arrow.id === action.payload)
+      const index = state.data.findIndex((arrow) => arrow.id === action.payload.id)
       state.data[index].active = false;
     },
     removed: (state, action) => {

@@ -4,7 +4,7 @@ export const Data:InitialValues[] = [
     {
         id:1,
         name:"Eat",
-        active:true,
+        active:false,
         details:"ipsum dolor sit amet consectetur adipisicing elit. Numquam quas maiores in sunt aliquam!litiar vero",
         time:Date.now()
         

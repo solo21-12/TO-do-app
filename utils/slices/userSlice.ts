@@ -2,21 +2,19 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Data } from "../../data";
 const initialState = {
-  data:Data,
-  loading:false,
-  error:""
+  data: Data,
+  loading: false,
+  error: "",
 };
 
 const fetchData = createAsyncThunk("user/fetchData", async () => {
-  const res = await axios
-    .get("/Data");
-  return res.data;
+  return axios.get("/api/Data").then((res) => res.data);
 });
 
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers:{},
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchData.pending, (state) => {
       state.loading = true;

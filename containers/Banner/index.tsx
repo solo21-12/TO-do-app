@@ -23,7 +23,7 @@ export const Banner = () => {
           possimus tenetur vero..
         </p>
         <button className=" bg-black text-white text-xs md:text-sm px-2 py-2 md:px-3 md:py-2 rounded-md hover:text-slate-300 mb-5">
-          <Link href="/active">schedule</Link>
+          <Link href="/Events/active">schedule</Link>
         </button>
       </div>
       <div className=" mx-10 hidden sm:block sm:w-1/2 max-h-[300px] w-full object-contain rounded-md overflow-hidden">
