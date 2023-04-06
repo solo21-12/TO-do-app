@@ -1,28 +1,39 @@
-import { createSlice } from "@reduxjs/toolkit";
-
-type IniitalState = {
-  name: string;
-  email: string;
-  password: string;
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import { Data } from "../../data";
+const initialState = {
+  data:Data,
+  loading:false,
+  error:""
 };
 
-const initialState: IniitalState = {
-  name: "",
-  email: "",
-  password: "",
-};
+const fetchData = createAsyncThunk("user/fetchData", async () => {
+  const res = await axios
+    .get("/Data");
+  return res.data;
+});
 
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    signUp: (state, action) => {
-      (state.name = action.payload),
-        (state.email = action.payload),
-        (state.password = action.payload);
-    },
+  reducers:{},
+  extraReducers: (builder) => {
+    builder.addCase(fetchData.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchData.fulfilled, (state, action) => {
+      state.loading = false;
+      state.data = action.payload;
+      state.error = "";
+    });
+    builder.addCase(fetchData.rejected, (state, action) => {
+      state.loading = false;
+      state.data = [];
+      state.error = action.error.message || "something when wrong";
+    });
   },
 });
 
 export default userSlice.reducer;
-export const { signUp } = userSlice.actions;
+const _fetchUsers = fetchData;
+export { _fetchUsers as fetchData };
