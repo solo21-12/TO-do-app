@@ -7,10 +7,10 @@ export const navigation: Navigation[] = [
   },
   {
     name: "Active",
-    path: "/active",
+    path: "/Events/active",
   },
   {
-    name: "Pending",
+    name: "Completed",
     path: "/pending",
   },
 ];
