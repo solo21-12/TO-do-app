@@ -1,18 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../../../utils/slices/userSlice";
 import { useEffect, useState } from "react";
-import { InitialValues } from "../../../containers/AddEvent/entities";
 import { Cards } from "../../../components";
 import { removed } from "../../../utils/slices/compltedSlice";
+import { DataTypes } from "../../../types";
 
 const Complted = () => {
-  const [Lists, setList] = useState<InitialValues[]>([]);
+  const [Lists, setList] = useState<DataTypes[]>([]);
   const dispatch = useDispatch();
-  let { data }: { data: InitialValues[] } = useSelector(
+  let { data }: { data: DataTypes[] } = useSelector(
     (state: any) => state.complted
   );
 
-  const handleClick = (action: string, item: InitialValues) => {
+  const handleClick = (action: string, item: DataTypes) => {
     if (action === "remove") {
       dispatch(removed(item.id));
     }

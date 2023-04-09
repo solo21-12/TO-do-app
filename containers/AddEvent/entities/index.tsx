@@ -1,11 +1,6 @@
-export type InitialValues = {
-  active: boolean;
-  details: string;
-  name: string;
-  id:number;
-};
+import { DataTypes } from "../../../types";
 
 export type FormsProps = {
-  values: InitialValues;
+  values: DataTypes;
   setValues: (value: string | number) => void;
 };

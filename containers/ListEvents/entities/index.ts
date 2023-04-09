@@ -1,7 +1,7 @@
-import { InitialValues } from "../../AddEvent/entities";
+import { DataTypes } from "../../../types";
 
 export type Props = {
-  setValue?: (val: string, item: InitialValues) => void;
-  data: InitialValues;
+  setValue?: (val: string, item: DataTypes) => void;
+  data: DataTypes;
   completed?:boolean;
 };

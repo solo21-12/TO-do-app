@@ -3,11 +3,13 @@ import Button from "../../components/common/Button";
 import { Dialogs, Forms } from "../../components";
 import { useDispatch } from "react-redux";
 import { added } from "../../utils/slices/listSlice";
+import { FormikValues } from "formik";
 
 export const AddEvent = () => {
   const dispatch = useDispatch();
   let [isOpen, setIsOpen] = useState(false);
-  const onSubmit = (values: any) => {
+  const onSubmit = (values: FormikValues) => {
+    values.id = Math.floor(Math.random() * 100)
     dispatch(added(values));
   };
   return (

@@ -1,6 +1,6 @@
 
 import { FormikValues } from "formik";
-import { InitialValues } from "../../containers/AddEvent/entities";
+import { DataTypes } from "../../types";
 
 export type DialogEntity = {
   isOpen: boolean;
@@ -8,6 +8,6 @@ export type DialogEntity = {
   title: string;
   onSubmit: (values: FormikValues) => void;
   ButtonTitile:string;
-  initialValues?:InitialValues
+  initialValues?:DataTypes
 
 };

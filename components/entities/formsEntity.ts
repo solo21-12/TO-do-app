@@ -1,5 +1,4 @@
 import { FormikValues } from "formik";
-import { InitialValues } from "../../containers/AddEvent/entities";
 
 export type FormsEntity = {
   closeModal: () => void;

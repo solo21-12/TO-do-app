@@ -1,8 +1,9 @@
-import { InitialValues } from "../entities";
+import { DataTypes } from "../../../types";
 
-export const initialValues:InitialValues = {
+export const initialValues: DataTypes = {
   active: false,
   details: "",
   name: "",
-  id: 0
+  id: 0,
+  pinned: false,
 };
