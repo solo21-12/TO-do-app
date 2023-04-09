@@ -1,15 +1,24 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Generator } from "./util/Generator";
 import React, { useEffect } from "react";
-
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import Button from "../../components/common/Button";
 export const Banner = () => {
   const [imgSrc, setImg] = React.useState<string>("");
-
+  const { data: session } = useSession();
+  const router = useRouter();
   useEffect(() => {
     const img: string = Generator();
     setImg(img);
   }, []);
+  const onClick = () => {
+    if (session) {
+      router.push("/Events/active");
+    } else {
+      router.push("/auth");
+    }
+  };
   return (
     <div className="flex sm:flex-row  flex-col mt-16 justify-between  w-[80%] lg:w-2/3 mx-auto">
       <div className=" md:mx-14 sm:w-1/2">
@@ -22,9 +31,7 @@ export const Banner = () => {
           molestiae at aut similique pariatur ipsam mollitia veniam corrupti,
           possimus tenetur vero..
         </p>
-        <button className=" bg-black text-white text-xs md:text-sm px-2 py-2 md:px-3 md:py-2 rounded-md hover:text-slate-300 mb-5">
-          <Link href="/Events/active">schedule</Link>
-        </button>
+        <Button title={"Schedule"} onClicke={onClick} />
       </div>
       <div className=" mx-10 hidden sm:block sm:w-1/2 max-h-[300px] w-full object-contain rounded-md overflow-hidden">
         {imgSrc && (

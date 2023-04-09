@@ -4,9 +4,12 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import { navigation } from "./List";
 import { classNames } from "./entities";
+import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 export const NavBar = () => {
+  const { data: session } = useSession();
   const pathname = usePathname();
+
   return (
     <nav>
       <Disclosure as="nav" className="bg-white shadow-sm">
@@ -39,38 +42,51 @@ export const NavBar = () => {
                         />
                       </svg>
                     </Link>
-                    <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-                      {navigation.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.path}
-                          className={classNames(
-                            pathname === item.path
-                              ? "border-slate-500 text-gray-900"
-                              : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
-                            "inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                          )}
-                          aria-current={
-                            pathname === item.path ? "page" : undefined
-                          }
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
-                    </div>
+                    {session && (
+                      <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+                        {navigation.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.path}
+                            className={classNames(
+                              pathname === item.path
+                                ? "border-slate-500 text-gray-900"
+                                : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
+                              "inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                            )}
+                            aria-current={
+                              pathname === item.path ? "page" : undefined
+                            }
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:items-center">
                   <Menu as="div" className="relative ml-3">
                     <div>
-                      <Menu.Button className=" flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
-                        <span className="sr-only"> Open user menu</span>
-                        <img
-                          className="h-8 w-8 rounded-full"
-                          src={"https://avatar.vercel.sh/leerob"}
-                          alt={`'placeholder'} avatar`}
-                        />
-                      </Menu.Button>
+                      {session ? (
+                        <Menu.Button className=" flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
+                          <span className="sr-only"> Open user menu</span>
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src={session.user?.image}
+                            alt={`'placeholder'} avatar`}
+                          />
+                        </Menu.Button>
+                      ) : (
+                        <Menu.Button className=" flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
+                          <span className="sr-only"> Open user menu</span>
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src={"https://avatar.vercel.sh/leerob"}
+                            alt={`'placeholder'} avatar`}
+                          />
+                        </Menu.Button>
+                      )}
                     </div>
                     <Transition
                       as={Fragment}
@@ -86,18 +102,28 @@ export const NavBar = () => {
                           as="div"
                           className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                         >
-                          {({ active }) => (
-                          
-                            <button
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "flex w-full px-4 py-2 text-sm text-gray-700"
+                          {session
+                            ? ({ active }) => (
+                                <button
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "flex w-full px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                  onClick={() => signOut()}
+                                >
+                                  Sign out
+                                </button>
+                              )
+                            : ({ active }) => (
+                                <button
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "flex w-full px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                >
+                                  <Link href="/auth">Sign in</Link>
+                                </button>
                               )}
-                             
-                            >
-                              <Link href="/auth">Sign in</Link>
-                            </button>
-                          )}
                         </Menu.Item>
                       </Menu.Items>
                     </Transition>

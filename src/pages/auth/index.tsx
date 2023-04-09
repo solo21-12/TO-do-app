@@ -1,13 +1,28 @@
 import Button from "../../../components/common/Button";
-import {FcGoogle} from "react-icons/fc"
+import { useSession, signIn, signOut } from "next-auth/react";
+import { AiFillGithub } from "react-icons/ai";
 const Auth = () => {
-    return ( <div className=" w-[30%] sm:w-[20%] mx-auto mt-48">
-        <Button 
-        title="Signin with google" 
-        onClicke={()=>console.log("Sign in with google")}
-        Icons={<FcGoogle/>}
-        />
-    </div> );
-}
- 
+  const { data: session } = useSession();
+  console.log(session, "session");
+  if (session) {
+    return (
+      <>
+        <div className=" w-[30%] sm:w-[20%] mx-auto mt-48">
+          <Button title="Sign out" onClicke={() => signOut()} />
+        </div>
+      </>
+    );
+  }
+
+  return (
+    <div className=" w-[30%] sm:w-[20%] mx-auto mt-48">
+      <Button
+        title="Signin with GitHub"
+        onClicke={() => signIn("github")}
+        Icons={<AiFillGithub className=" text-white text-xl" />}
+      />
+    </div>
+  );
+};
+
 export default Auth;
