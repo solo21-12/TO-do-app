@@ -2,7 +2,6 @@ export type InitialValues = {
   active: boolean;
   details: string;
   name: string;
-  time: number;
   id:number;
 };
 

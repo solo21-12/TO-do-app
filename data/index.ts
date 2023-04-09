@@ -6,7 +6,6 @@ export const Data:InitialValues[] = [
         name:"Eat",
         active:false,
         details:"ipsum dolor sit amet consectetur adipisicing elit. Numquam quas maiores in sunt aliquam!litiar vero",
-        time:Date.now()
         
     },
     {
@@ -14,7 +13,7 @@ export const Data:InitialValues[] = [
         name:"Drink",
         active:true,
         details:"ipsum dolor sit amet consectetur adipisicing elit. Numquam quas maiores in sunt aliquam!litiar vero",
-        time:Date.now()
+
         
     }
 ] 
