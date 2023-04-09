@@ -33,7 +33,7 @@ export function Cards({ setValue, data, completed }: Props) {
   return (
     <>
       <Card
-        className="mt-8 w-[90%] sm:w-[62%] lg:w-[35%] xl:w-[30%]"
+        className="mt-8 w-[90%] sm:w-[62%] lg:w-[35%] xl:w-[30%] hover:bg-slate-50 "
         decoration="top"
       >
         <Flex justifyContent="between" alignItems="center" className=" md:mb-4">

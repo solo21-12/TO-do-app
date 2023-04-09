@@ -12,7 +12,7 @@ export const NavBar = () => {
 
   return (
     <nav>
-      <Disclosure as="nav" className="bg-white shadow-sm">
+      <Disclosure as="nav" className="bg-slate-100 shadow-sm">
         {({ open }) => (
           <>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
