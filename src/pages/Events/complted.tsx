@@ -1,12 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../../../utils/slices/userSlice";
-import { useEffect, useState } from "react";
 import { Cards } from "../../../components";
 import { removed } from "../../../utils/slices/compltedSlice";
 import { DataTypes } from "../../../types";
-
+import { getSession } from "next-auth/react";
 const Complted = () => {
-  const [Lists, setList] = useState<DataTypes[]>([]);
   const dispatch = useDispatch();
   let { data }: { data: DataTypes[] } = useSelector(
     (state: any) => state.complted
@@ -27,3 +24,18 @@ const Complted = () => {
 };
 
 export default Complted;
+
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
