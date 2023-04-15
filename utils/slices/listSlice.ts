@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Data } from "../../data";
 import { removed as CompltedRemoved } from "./compltedSlice";
+
 const initialState = { data: Data.filter((item) => item.active == true) };
 const listSlice = createSlice({
   name: "list",
@@ -8,7 +9,7 @@ const listSlice = createSlice({
   reducers: {
     added: (state, action) => {
       action.payload.active = true;
-      state.data.push(action.payload );
+      state.data.push(action.payload);
     },
     complted: (state, action) => {
       const index = state.data.findIndex(

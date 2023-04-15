@@ -6,11 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db":"npx ts-node script.ts"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.17",
+    "@prisma/client": "^4.12.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@tremor/react": "^2.1.0",
     "@types/node": "18.15.11",
@@ -30,6 +32,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
+    "prisma": "^4.12.0",
     "tailwindcss": "^3.3.1"
   }
 }
