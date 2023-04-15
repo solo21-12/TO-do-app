@@ -1,11 +1,14 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { DataTypes } from "../../../../types";
-import { main } from "../../../../data/script";
+import nc from "next-connect";
+import {
+  getAllData,
+  postData,
+  updateData,
+  deleteData,
+} from "../../../../controllers/index";
+const handler = nc();
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<DataTypes[]>
-) {
-  const r = await main();
-  res.status(200).send(r);
-}
+handler.get(getAllData);
+handler.post(postData);
+handler.put(updateData);
+handler.delete(deleteData);
+export default handler;

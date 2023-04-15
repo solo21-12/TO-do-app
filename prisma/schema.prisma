@@ -26,3 +26,4 @@ model Tasks {
   userId Int
   pinned Boolean
 }
+

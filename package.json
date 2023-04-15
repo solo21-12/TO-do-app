@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db":"npx ts-node script.ts"
+    "db": "npx ts-node script.ts"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.13",
@@ -22,6 +22,7 @@
     "formik": "^2.2.9",
     "next": "13.2.4",
     "next-auth": "^4.22.0",
+    "next-connect": "^0.13.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
